@@ -3,7 +3,7 @@ package uk.ac.ed.inf.powergrab;
 public class Position {
 	public double latitude;
 	public double longitude;
-	public Direction direction = new Direction();
+	public final double r = 0.0003;
 	
 	public Position(double latitude, double longitude) {
 		this.latitude = latitude;
@@ -11,10 +11,13 @@ public class Position {
 	}
 	
 	public Position nextPosition(Direction direction) {
-		return null;
+		return new Position(latitude + r*direction.latitude, longitude + r*direction.longitude);
 	}
 	
 	public boolean inPlayArea() {
-		return true;
+		if (latitude > 55.942617 && latitude < 55.946233 && longitude > -3.192473 && longitude < -3.184319) {
+			return true;
+		}
+		return false;
 	}
 }
